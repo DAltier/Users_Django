@@ -1,0 +1,29 @@
+class Users(models.Model): first_name = models.CharField(max_length=255) 
+			   last_name = models.CharField(max_length=255) 
+			   email_address = models.CharField(max_length=255) 
+			   age = models.IntegerField() 
+			   created_at = models.DateTimeField(auto_now_add=True) 
+			   updated_at = models.DateTimeField(auto_now=True)
+
+Run the shell and import your User model: from users_app.models import Users
+
+Query: Create 3 new users: Users.objects.create(first_name='Alex',last_name='Doe',email_address='alex@gmail.com',age=35)
+			   Users.objects.create(first_name='Mark',last_name='Allen',email_address='mark@gmail.com',age=21)
+			   Users.objects.create(first_name='Jamie',last_name='Smith',email_address='jamie@gmail.com',age=26)
+
+Query: Retrieve all the users: Users.objects.all()
+
+Query: Retrieve the last user: Users.objects.last()
+
+Query: Retrieve the first user: Users.objects.first()
+
+Query: Change the user with id=3 so their last name is Pancakes: a = Users.objects.get(id=3) 
+								 a.last_name = 'pancakes' 
+								 a.save()
+
+Query: Delete the user with id=2 from the database: b = Users.objects.get(id=2) 
+						    b.delete()
+
+Query: Get all the users, sorted by their first name: Users.objects.all().order_by("first_name")
+
+BONUS Query: Get all the users, sorted by their first name in descending order: Users.objects.all().order_by("-first_name")
